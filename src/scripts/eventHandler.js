@@ -46,45 +46,100 @@ export class EventHandler {
     }
 
     showAddProjectModal() {
-        const projectName = prompt('Enter project name');
-        if (projectName) {
-            this.appLogic.createProject(projectName);
-            this.ui.renderProjects();
-            this.appLogic.saveToStorage();
-        }
+        this.ui.createModal(
+            'add-project-modal',
+            'Add New Project',
+            '<input type="text" id="project-name" placeholder="Project Name">',
+            () => {
+                const projectName = document.getElementById('project-name').value;
+                if (projectName) {
+                    this.appLogic.createProject(projectName);
+                    this.ui.renderProjects();
+                    this.appLogic.saveToStorage();
+                }
+            }
+        );
     }
 
     showAddTodoModal(projectId) {
-        const title = prompt('Enter task title:');
-        if (title) {
-            const description = prompt('Enter task description:');
-            const dueDate = prompt('Enter due date (YYYY-MM-DD):');
-            const priority = prompt('Enter priority (low/medium/high):');
-            this.appLogic.createTodo(title, description, new Date(dueDate), priority, projectId);
-            this.ui.renderTodos(projectId);
-            this.appLogic.saveToStorage();
-        }
+        this.ui.createModal(
+            'add-todo-modal',
+            'Add New Todo',
+            `
+            <input type="text" id="todo-title" placeholder="Todo Title">
+            <input type="text" id="todo-description" placeholder="Description">
+            <input type="date" id="todo-due-date" placeholder="Due Date">
+            <select id="todo-priority">
+                <option value="low">Low</option>
+                <option value="medium">Medium</option>
+                <option value="high">High</option>
+            </select>
+            `,
+            () => {
+                const title = document.getElementById('todo-title').value;
+                const description = document.getElementById('todo-description').value;
+                const dueDate = document.getElementById('todo-due-date').value;
+                const priority = document.getElementById('todo-priority').value;
+    
+                if (title && dueDate) {
+                    this.appLogic.createTodo(title, description, new Date(dueDate), priority, projectId);
+                    this.ui.renderTodos(projectId);
+                    this.appLogic.saveToStorage();
+                }
+            }
+        );
     }
 
     showEditTodoModal(todoId) {
         const todo = this.appLogic.getTodoById(todoId);
+
         if (todo) {
-          const title = prompt('Edit task title:', todo.title);
-          const description = prompt('Edit task description:', todo.description);
-          const dueDate = prompt('Edit due date (YYYY-MM-DD):', todo.dueDate.toISOString().split('T')[0]);
-          const priority = prompt('Edit priority (low/medium/high):', todo.priority);
-          this.appLogic.updateTodo(todoId, { title, description, dueDate: new Date(dueDate), priority });
-          this.ui.renderTodos(todo.projectId);
-          this.appLogic.saveToStorage();
+            this.ui.createModal(
+                'edit-todo-modal',
+                'Edit Todo',
+                `
+                <input type="text" id="todo-title" value="${todo.title}" placeholder="Todo Title">
+                <input type="text" id="todo-description" value="${todo.description}" placeholder="Description">
+                <input type="date" id="todo-due-date" value="${todo.dueDate.toISOString().split('T')[0]}" placeholder="Due Date">
+                <select id="todo-priority">
+                    <option value="low" ${todo.priority === 'low' ? 'selected' : ''}>Low</option>
+                    <option value="medium" ${todo.priority === 'medium' ? 'selected' : ''}>Medium</option>
+                    <option value="high" ${todo.priority === 'high' ? 'selected' : ''}>High</option>
+                </select>
+                `,
+                () => {
+                    const title = document.getElementById('todo-title').value;
+                    const description = document.getElementById('todo-description').value;
+                    const dueDate = document.getElementById('todo-due-date').value;
+                    const priority = document.getElementById('todo-priority').value;
+
+                    if (title && dueDate) {
+                        this.appLogic.updateTodo(todoId, {
+                            title,
+                            description,
+                            dueDate: new Date(dueDate),
+                            priority
+                        });
+                        this.ui.renderTodos(todo.projectId);
+                        this.appLogic.saveToStorage();
+                    }
+                }
+            );
         }
     }
 
     deleteTodo(todoId) {
-        const todo = this.appLogic.getTodoById(todo.id);
-        if (todo && confirm('Are you sure you want to delete this task?')) {
-            this.appLogic.deleteTodo(todoId);
-            this.ui.renderTodos(todo.projectId);
-            this.appLogic.saveToStorage();
-        }
+        const todo = this.appLogic.getTodoById(todoId);
+
+        this.ui.createModal(
+            'confirm-delete-modal',
+            'Delete Todo',
+            `<p>Are you sure you want to delete the task: <strong>${todo.title}</strong>?</p>`,
+            () => {  // Callback when the user confirms deletion
+                this.appLogic.deleteTodo(todoId);
+                this.ui.renderTodos(todo.projectId);  // Re-render todos after deletion
+                this.appLogic.saveToStorage();  // Save changes
+            }
+        );
     }
 }
