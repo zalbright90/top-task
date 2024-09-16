@@ -4,48 +4,48 @@ body {
     margin: 0;
     padding: 20px;
     font-size: 16px;
-  }
+}
   
-  #app {
+#app {
     max-width: 100%;
     margin: 0 auto;
-  }
+}
   
-  h1, h2, h3, h4 {
+h1, h2, h3, h4 {
     margin-top: 0;
-  }
+}
   
-  .project, .todo {
+.project, .todo {
     background-color: #f4f4f4;
     margin-bottom: 10px;
     padding: 10px;
     border-radius: 5px;
-  }
+}
   
-  .todo {
+.todo {
     display: flex;
     justify-content: space-between;
     align-items: center;
-  }
+}
   
-  .todo h4 {
+.todo h4 {
     margin: 0;
-  }
+}
   
-  button {
+button {
     background-color: #333;
     color: #fff;
     border: none;
     padding: 5px 10px;
     cursor: pointer;
     font-size: 14px;
-  }
+}
   
-  .priority-high { border-left: 5px solid red; }
-  .priority-medium { border-left: 5px solid yellow; }
-  .priority-low { border-left: 5px solid green; }
+.priority-high { border-left: 5px solid red; }
+.priority-medium { border-left: 5px solid yellow; }
+.priority-low { border-left: 5px solid green; }
   
-  .modal {
+.modal {
     position: fixed;
     top: 0;
     left: 0;
@@ -55,18 +55,18 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-  }
+}
   
-  .expanded-todo {
+.expanded-todo {
     background-color: white;
     padding: 20px;
     border-radius: 5px;
     max-width: 90%;
     max-height: 90%;
     overflow-y: auto;
-  }
+}
   
-  @media (min-width: 768px) {
+@media (min-width: 768px) {
     #app {
       max-width: 750px;
     }
@@ -74,4 +74,4 @@ body {
     .expanded-todo {
       max-width: 600px;
     }
-  }
+}
