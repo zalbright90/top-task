@@ -23,13 +23,13 @@ h1, h2, h3, h4 {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    text-align: center;
 }
 
 h1 {
     font-size: 2rem;
     color: #0033aa;
     margin-bottom: 20px;
+    text-align: center;
 }
   
 .project, .todo {
@@ -192,7 +192,7 @@ footer {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    width: 100%;
+    width: 85%;
     background-color: #f9f9fb;
     color: #555;
     padding: 10px 20px;
