@@ -1,39 +1,35 @@
-# ES6 Webpack Template
+# Top Task
 
-A template repository for using ES6 modules with npm and Webpack.
+A personal task list manager built with JavaScript, HTML, and CSS.
 
-## Getting Started
+## Features
 
-1. Clone the repository:
-    ```bash
-    git clone https://github.com/zalbright90/es6-webpack-template.git
-    ```
+- Create, view, update, and delete projects.
+- Add, view, update, and delete tasks within projects.
+- Set due dates, priorities, and notes for tasks.
+- Mark tasks as completed.
+- Sort tasks by due date, priority, or title.
+- Filter tasks by completed status.
 
-2. Navigate to the directory:
-    ```bash
-    cd es6-webpack-template
-    ```
+## Usage
 
-3. Install dependencies:
-    ```bash
-    npm install
-    ```
+- Click on "Add Project" to create a new project.
+- Click on a project to view its tasks.
+- Click on "Add Task" to add a new task to the selected project.
+- Click on the "View" button to expand a task and view its details.
+- Click on the "Delete" button to delete a project or task.
+- Click on the "Expand" button to view additional details and update task information.
+- Use the dropdown menu to sort tasks by due date, priority, or title.
+- Use the checkbox to filter tasks by completed status.
 
-4. Build the project:
-    ```bash
-    npm run build
-    ```
+## Contributing
 
-5. Start the development server:
-    ```bash
-    npm start
-    ```
+Contributions are welcome! If you find any bugs or have suggestions for improvements, please open an issue or submit a pull request.
 
-## Project Structure
+## License
 
-- `src/`: Source files
-- `dist/`: Compiled files
-- `webpack.config.js`: Webpack configuration
-- `.babelrc`: Babel configuration
-- `package.json`: npm configuration
+This project is licensed under the MIT License.
 
+## Credits
+
+Created by [zalbright90 (End0Skeleton)](https://github.com/zalbright90)
