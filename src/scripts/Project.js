@@ -23,6 +23,10 @@ export class Project {
         Object.assign(todo, updates);
       }
     }
+
+    removeProject(projectId) {
+      this.projects = this.projects.filter(project => project.id !== projectId);
+    }
   
     sortTodos(sortBy = 'dueDate') {
       this.todos.sort((a, b) => {

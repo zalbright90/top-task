@@ -187,6 +187,47 @@ button:hover {
     color: #003366;
 }
 
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    background-color: #f9f9fb;
+    color: #555;
+    padding: 10px 20px;
+    text-align: center;
+    font-family: 'Arial', sans-serif;
+    margin-top: auto;
+  }
+  
+  footer p {
+    margin: 0;
+    padding: 5px 0;
+    font-size: 14px;
+  }
+  
+  .social-links {
+    margin-top: 10px;
+  }
+  
+  .social-links a {
+    color: #555;
+    font-size: 20px;
+    margin: 0 10px;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .social-links a:hover {
+    color: #0033aa;
+  }
+  
+  .social-links a:focus {
+    outline: 2px solid #3498db;
+    outline-offset: 2px;
+  }
+
 @media (min-width: 768px) {
     #app {
       max-width: 750px;

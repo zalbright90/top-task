@@ -133,12 +133,27 @@ export class EventHandler {
 
         this.ui.createModal(
             'confirm-delete-modal',
-            'Delete Todo',
+            'Delete Task',
             `<p>Are you sure you want to delete the task: <strong>${todo.title}</strong>?</p>`,
-            () => {  // Callback when the user confirms deletion
+            () => { 
                 this.appLogic.deleteTodo(todoId);
-                this.ui.renderTodos(todo.projectId);  // Re-render todos after deletion
-                this.appLogic.saveToStorage();  // Save changes
+                this.ui.renderTodos(todo.projectId);
+                this.appLogic.saveToStorage();
+            }
+        );
+    }
+
+    deleteProject(projectId) {
+        const project = this.appLogic.getProjectById(projectId);
+
+        this.ui.createModal(
+            'confirm-delete-modal',
+            'Delete Project',
+            `<p>Are you sure you want to delete the project: <strong>${projectId.title}</strong>?</p>`,
+            () => {
+                this.appLogic.deleteProject(projectId);
+                this.ui.renderProjects(project.projectId);
+                this.appLogic.saveToStorage();
             }
         );
     }

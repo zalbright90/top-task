@@ -22,6 +22,11 @@ export class appLogic {
     return this.projects.find(project => project.id === projectId);
   }
 
+  deleteProject(projectId) {
+    this.projects = this.projects.filter(project => project.id !== projectId);
+    this.saveToStorage();
+  }
+
   createTodo(title, description, dueDate, priority, projectId = null) {
     const targetProject = this.getProjectById(projectId) || this.getDefaultProject();
     const todo = new Todo(title, description, dueDate, priority, targetProject.id);

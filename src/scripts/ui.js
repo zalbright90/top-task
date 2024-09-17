@@ -21,6 +21,15 @@ export class UI {
       const projectElement = this.createProjectElement(project);
       this.projectsContainer.appendChild(projectElement);
     });
+
+    this.projectsContainer.addEventListener('click', event => {
+      if (event.target.classList.contains('delete-project')) {
+        const projectId = event.target.dataset.projectId;
+        this.appLogic.deleteProject(projectId);
+        this.renderProjects();
+        this.appLogic.saveToStorage();
+      }
+    });
   }
 
   createProjectElement(project) {
@@ -29,9 +38,12 @@ export class UI {
     projectElement.innerHTML = `
       <h2>${project.name}</h2>
       <button class="view-project" data-project-id="${project.id}">View</button>
+      <button class="delete-project" data-project-id="${project.id}">Delete</button>
     `;
     return projectElement;
   }
+
+
 
   renderTodos(projectId) {
     const project = this.appLogic.projects.find(p => p.id === projectId);
@@ -60,7 +72,7 @@ export class UI {
 
   renderAddTodoButton(projectId) {
     const addButton = document.createElement('button');
-    addButton.textContent = 'Add Todo';
+    addButton.textContent = 'Add Task';
     addButton.classList.add('add-todo');
     addButton.dataset.projectId = projectId;
     this.todosContainer.appendChild(addButton);
@@ -89,7 +101,7 @@ export class UI {
           `).join('')}
         </ul>
         `,
-        () => {  // Callback for when the user closes the modal (if needed)
+        () => {
             console.log("Task expanded modal closed");
         }
     );
